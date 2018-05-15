@@ -19,7 +19,7 @@ services:
     restart: always
     build: ./botapp
     ports:
-      - "443:5000"
+      - "5000:5000"
 
     env_file:
       - settings.env

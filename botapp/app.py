@@ -90,20 +90,7 @@ def updates():
 
 @app.route("/")
 def index():
-
-    redis_host = settings.redis.split(':')[0]
-    redis_port = int(settings.redis.split(':')[1])
-    cache = redis.Redis(host=redis_host, port=redis_port, socket_timeout=2)
-    count = get_hit_count(cache)
-    redis_test = 'Hello World! I have been seen {} times.\n'.format(count)
-
-    mongo_host = settings.db_host.split(':')[0]
-    mongo_port = int(settings.db_host.split(':')[1])
-
-    mongo_client = pymongo.MongoClient(mongo_host, mongo_port)
-    mongo_test = mongo_client.database_names()
-
-    return f'{redis_test}<br>{mongo_test}'
+    return 'All work and no play makes jack a dull boy'
 
 
 def get_hit_count(cache):
