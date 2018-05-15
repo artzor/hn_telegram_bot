@@ -1,0 +1,7 @@
+venv/
+/botapp/chatbot.crt
+/botapp/chatbot.key
+/botapp/hn_telegram_bot.log
+settings.env
+botapp/tests/test.txt
+.idea/*
