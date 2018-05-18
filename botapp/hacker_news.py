@@ -4,6 +4,7 @@ import requests
 import concurrent.futures
 from settings import settings, Logger
 import datetime
+import urllib.parse
 
 
 HN_TOP_STORIES = 'https://hacker-news.firebaseio.com/v0/topstories.json'
@@ -19,7 +20,16 @@ class HackerNews:
         _db = settings.db_host.split(':')
         db_host = _db[0]
         db_port = int(_db[1])
-        self.db_client = pymongo.MongoClient(db_host, db_port, serverSelectionTimeoutMS=1000, connect=False)
+        connection_user = ''
+
+        if settings.db_user and settings.db_password:
+            db_user = urllib.parse.quote_plus(settings.db_user)
+            db_password = urllib.parse.quote_plus(settings.db_password)
+            connection_user = f'{db_user}:{db_password}@'
+
+        connection_string = f'mongodb://{connection_user}{db_host}:{db_port}'
+
+        self.db_client = pymongo.MongoClient(connection_string, serverSelectionTimeoutMS=1000, connect=False)
 
         db_name = settings.db_name
 

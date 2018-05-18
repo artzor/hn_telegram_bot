@@ -4,4 +4,5 @@ venv/
 /botapp/hn_telegram_bot.log
 settings.env
 botapp/tests/test.txt
+botapp/celerybeat-schedule
 .idea/*
